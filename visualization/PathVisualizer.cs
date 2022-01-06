@@ -1,3 +1,23 @@
+// --------------------------------------------------------------------------------------------------------------------
+// Path Visualizer script, version 2021-01-06
+// This script processes (and debugs/visualizes) currently captured eye-tracking data, to send them to a logger.
+//
+// The script is derived from SRanipal API (based on SRanipal_EyeFocusSample_v2).
+// Functionality: To obtain the data from the Focus function which enables to find the focal point of eyes in VR.
+// 
+// Use: pair it with logger (PathScript).
+// The external logger already user camera position and rotation by default, as well as timestamp.
+// The eye-tracking data (gaze coordinates, raycast.hit object) as passed on to the logger through this script. 
+//
+// Script setup and options:
+//   Max distance: maximum eye-tracking distance, in meters
+//   Dual raycaster settings: if enabled; which layers to ignore
+//   Gaze point visualization
+//   Calibration settings (per SRanipal functionality)
+//   Logger reference (PathScript logger)
+//   Logging settings (gaze position, gazed object name, etc.)
+// --------------------------------------------------------------------------------------------------------------------
+
 public class PathVisualizer : MonoBehaviour
 {
     //link to the file name -- has to be located in the Assets/Resources folder
