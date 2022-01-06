@@ -1,5 +1,5 @@
 // --------------------------------------------------------------------------------------------------------------------
-// Heatmap Visualizer script, version 2021-01-06
+// Heatmap Visualizer script, version 2022-01-06
 // This script processes loaded CSV user eye-tracking data and visualizes them.
 //
 // Functionality: To visualize user eye-tracking data via a heatmap consisting of individual gaze points colored according to the density of neighboring gaze points.
