@@ -1,8 +1,45 @@
+// --------------------------------------------------------------------------------------------------------------------
+// Heatmap Visualizer, version 2020-01-06
+// This script collects data a virtual environment user can generate.
+//
+// For the current range of logging possibilities and settings, see the UI in Unity inspector
+//     Movement logging: Internal. Attach the script to the desired (FPS)Controller. Logs position and rotation. 
+//     Collision logging: External. For user controller bumping into Trigger colliders.
+//     Controller logging: Internal. Use of physical interface. Currently keyboard only, GetKeyDown() on Update().
+//     Eye tracking: External. SMI format. Deprecated.
+//     Eye tracking 2: External. Pupil Labs format (old). Deprecated.
+//     Eventlog: External. Free format, accepts any string at logEventInfo().
+//     Moving Objects log: Internal. Logs a list of movingObjects<GameObject>.
+//       
+//  Movement and moving objects are logged countinuously per interval, on a coroutine (max per fps).
+//      Set BufferSize for write buffer size (every Nth entry).
+//      Set MovementLogInterval for logging periodicity (0 = per fps). Otherwise, delay in seconds.
+//
+//  Data format: prefedined, per CSV standard and en-Us locale.
+//      Changeable per separatorDecimal and separatorItem. Consider format dependency of other apps.
+//  Data naming/location: set per dataPrefix and saveLocation. Make sure the dataLocation exists & is writeable.
+//  Data structure: see GenerateFileNames() for headers. Self-explanatory.
+//
+// Basic data structure example (path):
+//      userId -- generated per timestamp to identify the user in batch/multiple file processing
+//      logId  -- iterator on the current log file
+//      timestamp -- time (seconds), Unix epoch format
+//      hour | minute | second | milliseconds
+//      xpos | ypos | zpos -- location in global Unity coordinates (1 Unity unit = 1 meter)
+//      uMousePos | vMousePos | wMousePos -- camera position per mouse. Only u/v relevant (LCD task); only v (VR task)
+//      uGazePos | vGazePos | wGazePos    -- VR HMD camera. Only relevant when wearing HMD. Otherwise junk data
+//
+// Usage: Attach this script to an intended FPSController (dragging & dropping within the Hierarchy browser will do).
+//      Other dependent object have to be linked to it, too (e.g. movingObjects<>)
+// PathScript methods are public. If other scripts are linked to the GameObject with PathScript, they can log.
+//      E.g.: Logger.GetComponent<PathScript>().logEventData(this.name + " triggered " + subObject.name);
+// --------------------------------------------------------------------------------------------------------------------
+
 using UnityEngine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Text.RegularExpressions
+using System.Text.RegularExpressions;
 
 public class HeatmapVisualizer : MonoBehaviour
 {
