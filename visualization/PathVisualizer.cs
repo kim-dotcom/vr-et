@@ -7,7 +7,7 @@
 // Script setup and options:
 // Loading a CSV file: name of the file (must be located in the Assets/Resources folder of the Unity project)
 // Optimization for large data files: culling the data either by determining from-to range in the dataset itself or by an in-scene collider (box)
-// Visualisation: chose the color and size of points (when visualizing discrete coordinates), or the color of the line
+// Visualization: choose the color and size of points (when visualizing discrete coordinates), or the color of the line
 // --------------------------------------------------------------------------------------------------------------------
 
 public class PathVisualizer : MonoBehaviour
