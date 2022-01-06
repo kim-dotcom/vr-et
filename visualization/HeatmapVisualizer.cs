@@ -1,3 +1,18 @@
+// --------------------------------------------------------------------------------------------------------------------
+// Heatmap Visualizer script, version 2021-01-06
+// This script processes loaded CSV user eye-tracking data and visualizes them.
+//
+// Functionality: To visualize user eye-tracking data via a heatmap consisting of individual gaze points colored according to the density of neighboring gaze points.
+//
+// Script setup and options:
+// Loading a CSV file: name of the file (must be located in the Assets/Resources folder of the Unity project)
+// Eye-tracking variables: setting the names of the XYZ gaze positions of the eye-tracking dataset
+// Max Point Distance: setting the max distance of nearby gaze points to be included in the density computation
+// Min Cluster Size: determine the minimum number of gaze points to be considered a cluster (for further computation)
+// Optimization for large data files: culling the data either by determining from-to range in the dataset itself or by an in-scene collider (box)
+// Visualization: chose the color (from low to high density) and size of the displayed gaze points in the heatmap; optionally choose if you want to visualize the eye-tracking trail (individual gaze points connected by a line) and it's color or the max length of that trail
+// --------------------------------------------------------------------------------------------------------------------
+
 using UnityEngine;
 using System;
 using System.Collections;
