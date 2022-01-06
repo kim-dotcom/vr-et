@@ -5,7 +5,7 @@
 // Functionality: To visualize user movement trajectory through 3D virtual environment as a 2D line using Unity's LineRenderer class (or discrete points).
 //
 // Script setup and options:
-// Loading a CSV file: name of the file (must be located in the Assests/Resources folder of the Unity project)
+// Loading a CSV file: name of the file (must be located in the Assets/Resources folder of the Unity project)
 // Optimization for large data files: culling the data either by determining from-to range in the dataset itself or by an in-scene collider (box)
 // Visualisation: chose the color or size of points (when visualizing discrete coordinates), or the color of the line
 // --------------------------------------------------------------------------------------------------------------------
