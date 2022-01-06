@@ -1,8 +1,8 @@
 // --------------------------------------------------------------------------------------------------------------------
 // Path Visualizer script, version 2021-01-06
-// This script processes loaded CSV user trajectory data a visualizes them. 
+// This script processes loaded CSV user trajectory data and visualizes them. 
 //
-// Functionality: To visualize user movement trajectory through 3D virtual environment as a 2D line using Unity's LineRenderer class (or discrete points).
+// Functionality: To visualize user movement trajectory through 3D virtual environment as a 2D line using Unity's LineRenderer class (or as discrete points).
 //
 // Script setup and options:
 //   Loading a CSV file: name of the file (must be located in the Assests/Resources folder of the Unity project)
