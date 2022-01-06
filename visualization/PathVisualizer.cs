@@ -1,21 +1,13 @@
 // --------------------------------------------------------------------------------------------------------------------
 // Path Visualizer script, version 2021-01-06
-// This script processes (and debugs/visualizes) currently captured eye-tracking data, to send them to a logger.
+// This script processes loaded CSV user trajectory data a visualizes them. 
 //
-// The script is derived from SRanipal API (based on SRanipal_EyeFocusSample_v2).
-// Functionality: To obtain the data from the Focus function which enables to find the focal point of eyes in VR.
-// 
-// Use: pair it with logger (PathScript).
-// The external logger already user camera position and rotation by default, as well as timestamp.
-// The eye-tracking data (gaze coordinates, raycast.hit object) as passed on to the logger through this script. 
+// Functionality: To visualize user movement trajectory through 3D virtual environment as a 2D line using Unity's LineRenderer class (or discrete points).
 //
 // Script setup and options:
-//   Max distance: maximum eye-tracking distance, in meters
-//   Dual raycaster settings: if enabled; which layers to ignore
-//   Gaze point visualization
-//   Calibration settings (per SRanipal functionality)
-//   Logger reference (PathScript logger)
-//   Logging settings (gaze position, gazed object name, etc.)
+//   Loading a CSV file: name of the file (must be located in the Assests/Resources folder of the Unity project)
+//   Optimization for large data files: culling the data either by determining from-to range in the dataset itself or by an in-scene collider (box)
+//   Visualisation: chose the color or size of points (when visualizing discrete coordinates), or the color of line
 // --------------------------------------------------------------------------------------------------------------------
 
 public class PathVisualizer : MonoBehaviour
