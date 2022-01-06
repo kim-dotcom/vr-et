@@ -1,5 +1,5 @@
 // --------------------------------------------------------------------------------------------------------------------
-// Heatmap Visualizer, version 2020-01-06
+// Heatmap Visualizer script, version 2020-01-06
 // This script collects data a virtual environment user can generate.
 //
 // For the current range of logging possibilities and settings, see the UI in Unity inspector
