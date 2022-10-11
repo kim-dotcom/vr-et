@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// Unity VR PathScript, version 2020-06-22
+// Unity VR PathScript, version 2022-11-10
 // This script collects data a virtual environment user can generate.
 //
 // For the current range of logging possibilities and settings, see the UI in Unity inspector
@@ -200,6 +200,19 @@ public class PathScript : MonoBehaviour
         }
     }
 
+    //on quit write away any remaining log data (buffers)
+    void OnApplicationQuit()
+    {
+        if (pathBuffer != "") { streamWriterMovement.Write(pathBuffer); }
+        if (etBuffer != "") { streamWriterEyeTracking2.Write(etBuffer); }
+        if (movingObjectsBuffer != "") { streamWriterMovingObjects.Write(movingObjectsBuffer);  }
+
+        for (int i = 0; i < customLogBuffers.Count; i++)
+        {
+            if (customLogBuffers[i] != "") { customLogStreamWriters[i].Write(customLogBuffers[i]); }
+        }
+    }
+
     // Generate new file name on every run (as per timestamp)
     void GenerateFileNames(bool includeVariableNames)
     {
@@ -359,9 +372,9 @@ public class PathScript : MonoBehaviour
                                      //TODO: implement a unified log requesting feature
                                      //////////////////////////////////////////////////////////////////////////////////  
                                      customLogVariables + "\r\n";
-                System.IO.File.AppendAllText(customLogFileNames[customLogFileNames.Count - 1], customLogVariables);
-            }
+            }            
             customLogStreamWriters.Add(new StreamWriter(customLogFileNames[customLogNames.IndexOf(logName)]));
+            customLogStreamWriters[customLogFileNames.Count - 1].Write(customLogVariables);
             return true;
         }
     }
